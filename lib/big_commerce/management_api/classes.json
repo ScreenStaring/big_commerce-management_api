@@ -1,0 +1,105 @@
+{
+  "attribute": {
+    "id": 1,
+    "name": "Age",
+    "type": "string",
+    "date_created": "2018-11-13T21:42:06Z",
+    "date_modified": "2018-11-14T16:46:23Z"
+  },
+  "attribute_value": {
+    "attribute_id": 0,
+    "attribute_value": "string",
+    "id": 0,
+    "customer_id": 0,
+    "date_modified": "2019-08-24T14:15:22Z",
+    "date_created": "2019-08-24T14:15:22Z"
+  },
+  "customer": {
+    "id": 1,
+    "email": "string@example.com",
+    "first_name": "string",
+    "last_name": "string",
+    "company": "string",
+    "phone": "string",
+    "notes": "string",
+    "tax_exempt_category": "string",
+    "customer_group_id": 0,
+    "addresses": [
+      {
+        "first_name": "string",
+        "last_name": "string",
+        "address1": "Addr1",
+        "address2": "",
+        "city": "string",
+        "state_or_province": "string",
+        "postal_code": "string",
+        "country_code": "st",
+        "phone": "string",
+        "address_type": "residential",
+        "customer_id": 0,
+        "id": 0,
+        "country": "string"
+      }
+    ],
+    "store_credit_amounts": [
+      {
+        "amount": 43.15
+      }
+    ],
+    "accepts_product_review_abandoned_cart_emails": true,
+    "channel_ids": [],
+    "shopper_profile_id": "82511e54-4040-40fe-b742-2b25655f205b",
+    "segment_ids": []
+  },
+  "metafield": {
+    "id": 0,
+    "owner_client_id": "X123",
+    "key": "Staff Name",
+    "value": "Ronaldo",
+    "namespace": "Sales Department",
+    "permission_set": "app_only",
+    "resource_type": "cart",
+    "resource_id": 1,
+    "description": "order",
+    "date_created": "2022-06-16T18:39:00+00:00",
+    "date_modified": "2022-06-16T18:39:00+00:00"
+  },
+  "inventory": {
+    "identity": {
+      "sku": "RE-130",
+      "variant_id": 79,
+      "product_id": 120,
+      "sku_id": 0
+    },
+    "locations": [
+      {
+        "location_id": 1,
+        "location_code": "BC-LOCATION-1",
+        "location_name": "Default location",
+        "available_to_sell": 10,
+        "total_inventory_onhand": 11,
+        "location_enabled": true,
+        "settings": {
+          "safety_stock": 1,
+          "is_in_stock": true,
+          "warning_level": 1,
+          "bin_picking_number": "1"
+        }
+      }
+    ]
+  },
+  "meta": {
+    "pagination": {
+      "total": 246,
+      "count": 5,
+      "per_page": 5,
+      "current_page": 1,
+      "total_pages": 50,
+      "links": {
+        "previous": "?limit=5&page=2",
+        "current": "?limit=5&page=3",
+        "next": "?limit=5&page=4"
+      }
+    }
+  }
+}
