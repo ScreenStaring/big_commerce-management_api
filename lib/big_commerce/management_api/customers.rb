@@ -5,6 +5,37 @@ require "big_commerce/management_api/endpoint"
 module BigCommerce
   module ManagementAPI
     class Customers < Endpoint
+      class Addresses < Endpoint
+        PATH = "customers/addresses"
+        RESULT_INSTANCE = Address
+
+        def create(*attributes)
+          POST(PATH, attributes.map(&:to_h))
+        end
+
+        def delete(*ids)
+          ids.flatten!
+
+          DELETE(
+            PATH,
+            with_in_param({:id => ids}, :id)
+          )
+        end
+
+        def get(options = {})
+          GET(
+            PATH,
+            with_in_param(
+              options,
+              :company,
+              :customer_id,
+              :id,
+              :name
+            )
+          )
+        end
+      end
+
       class Attributes < Endpoint
         PATH = "customers/attributes"
         RESULT_INSTANCE = Attribute
@@ -85,12 +116,15 @@ module BigCommerce
       PATH = "customers"
       RESULT_INSTANCE = Customer
 
-      attr_reader :attributes,
+      attr_reader :addresses,
+                  :attributes,
                   :attribute_values,
                   :metafields
 
       def initialize(*argz)
-        super *argz
+        super(*argz)
+
+        @addresses = Addresses.new(*argz)
         @attributes = Attributes.new(*argz)
         @attribute_values = AttributeValues.new(*argz)
         @metafields = Metafields.new(*argz)
