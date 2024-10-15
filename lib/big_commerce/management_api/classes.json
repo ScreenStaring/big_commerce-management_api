@@ -90,6 +90,18 @@
       }
     ]
   },
+  "subscriber": {
+    "email": "string",
+    "first_name": "string",
+    "last_name": "string",
+    "source": "string",
+    "order_id": 1,
+    "channel_id": 1,
+    "id": 0,
+    "date_modified": "2019-08-24T14:15:22Z",
+    "date_created": "2019-08-24T14:15:22Z",
+    "consents": []
+  },
   "meta": {
     "pagination": {
       "total": 246,

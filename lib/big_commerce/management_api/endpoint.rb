@@ -60,6 +60,8 @@ module BigCommerce
       CONTENT_TYPE = "Content-Type"
       CONTENT_TYPE_JSON = "application/json"
 
+      JSON_CONTENT_TYPES = [CONTENT_TYPE_JSON, "application/problem+json"].freeze
+
       RESULT_KEY = "data"
 
       class Meta
@@ -227,7 +229,7 @@ module BigCommerce
         request.start do |http|
           res = http.request(req)
           # TODO: data can be HTML string! Don't want this in the error!
-          data = res.body && res[CONTENT_TYPE] == CONTENT_TYPE_JSON ? parse_json(res.body) : res.body
+          data = res.body && JSON_CONTENT_TYPES.include?(res[CONTENT_TYPE]) ? parse_json(res.body) : res.body
           # pp data
           headers = big_commerce_headers(res)
 
