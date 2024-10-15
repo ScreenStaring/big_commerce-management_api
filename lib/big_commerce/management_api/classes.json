@@ -46,6 +46,9 @@
         "amount": 43.15
       }
     ],
+    "form_fields": [
+      { "name": "string", "value": "string" }
+    ],
     "accepts_product_review_abandoned_cart_emails": true,
     "channel_ids": [],
     "shopper_profile_id": "82511e54-4040-40fe-b742-2b25655f205b",
