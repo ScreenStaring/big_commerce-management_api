@@ -16,6 +16,15 @@ module BigCommerce
         def create(*attributes)
           POST(PATH, attributes.map(&:to_h))
         end
+
+        def delete(*ids)
+          ids.flatten!
+
+          DELETE(
+            PATH,
+            with_in_param({:id => ids}, :id)
+          )
+        end
       end
 
       class AttributeValues < Endpoint
