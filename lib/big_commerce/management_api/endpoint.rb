@@ -99,9 +99,9 @@ module BigCommerce
 
         attr_reader :meta
 
-        def initialize(result, headers, meta)
+        def initialize(result, headers, meta = nil)
           @result = result
-          @meta = Meta.new(headers, Pagination.new(meta["pagination"]))
+          @meta = Meta.new(headers, meta ? Pagination.new(meta["pagination"]) : nil)
         end
 
         def each(&block)
@@ -121,12 +121,16 @@ module BigCommerce
       protected
 
       def DELETE(path, data = {})
-        request(Net::HTTP::Delete.new(endpoint(path)), data)
+        path = endpoint(path)
+        path << query_string(data) if data && data.any?
+
+        request(Net::HTTP::Delete.new(path))
       end
 
       def GET(path, data = {})
         path = endpoint(path)
         path << query_string(data) if data && data.any?
+
         request(Net::HTTP::Get.new(path))
       end
 
@@ -226,26 +230,30 @@ module BigCommerce
           )
         end
 
-        request.start do |http|
-          res = http.request(req)
-          # TODO: data can be HTML string! Don't want this in the error!
-          data = res.body && JSON_CONTENT_TYPES.include?(res[CONTENT_TYPE]) ? parse_json(res.body) : res.body
-          # pp data
-          headers = big_commerce_headers(res)
+        request.start { |http| handle_response(http.request(req)) }
+      end
 
-          raise ResponseError.new(data, headers) if res.code[0] != "2"
+      def handle_response(res)
+        # TODO: data can be HTML string! Don't want this in the error!
+        data = res.body && JSON_CONTENT_TYPES.include?(res[CONTENT_TYPE]) ? parse_json(res.body) : res.body
+        # pp data
+        headers = big_commerce_headers(res)
 
-          result = data[self.class::RESULT_KEY]
-          if result.is_a?(Array)
-            result.map! { |data| self.class::RESULT_INSTANCE.new(data) }
-          else
-            result = [self.class::RESULT_INSTANCE.new(result)]
-          end
+        raise ResponseError.new(data, headers) if res.code[0] != "2"
 
-          # If response code is 2XX and data is a String we will have an error here
-          # but it's TBD if this is ever the case
-          Response.new(result, headers, data["meta"])
+        # 204, likely
+        return Response.new([], headers) unless data
+
+        result = data[self.class::RESULT_KEY]
+        if result.is_a?(Array)
+          result.map! { |data| self.class::RESULT_INSTANCE.new(data) }
+        else
+          result = [self.class::RESULT_INSTANCE.new(result)]
         end
+
+        # If response code is 2XX and data is a String we will have an error here
+        # but it's TBD if this is ever the case
+        Response.new(result, headers, data["meta"])
       end
     end
   end

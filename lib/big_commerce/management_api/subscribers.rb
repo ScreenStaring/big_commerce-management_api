@@ -28,9 +28,21 @@ module BigCommerce
         unwrap(result)
       end
 
-      def delete(id)
-        result = DELETE(PATH, :subscriber_id => id)
-        unwrap(result)
+      def delete(options)
+        DELETE(
+          PATH,
+          with_in_param(
+            options,
+            :date_created,
+            :date_modified,
+            :email,
+            :first_name,
+            :id,
+            :last_name,
+            :order_id,
+            :source
+          )
+        )
       end
     end
   end
