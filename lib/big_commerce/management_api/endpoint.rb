@@ -123,7 +123,7 @@ module BigCommerce
 
       def GET(path, data = {})
         path = endpoint(path)
-        path << sprintf("?%s", URI.encode_www_form(data)) if data && data.any?
+        path << query_string(data) if data && data.any?
         request(Net::HTTP::Get.new(path))
       end
 
@@ -148,18 +148,35 @@ module BigCommerce
       def with_in_param(options, *param_names)
         options = options.dup
         options.keys.each do |name|
+          # Remove optional ":in" portion from "id:in" which may or may not be a Symbol
+          name = name.to_s.split(":")[0].to_sym
           next unless param_names.include?(name)
 
           values = Array(options.delete(name))
+
+          in_name = "#{name}:in"
+          values.concat(Array(options.delete(in_name)))
+
           next unless values.any?
 
-          options["#{name}:in"] = values.join(",")
+          options[in_name] = values.join(",")
         end
 
         options
       end
 
       private
+
+      def query_string(params)
+        params = params.dup
+
+        params.keys.each do |name|
+          params[name] = params[name].join(",") if params[name].is_a?(Array)
+        end
+
+        # TODO: do they want form or URL encoding?
+        sprintf("?%s", URI.encode_www_form(params))
+      end
 
       def endpoint(path)
         sprintf("/stores/%s/v3/%s", @store_hash, path)
