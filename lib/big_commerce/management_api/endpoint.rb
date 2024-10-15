@@ -2,6 +2,7 @@
 
 require "json"
 require "net/http"
+require "big_commerce/management_api/version"
 
 module BigCommerce
   module ManagementAPI
