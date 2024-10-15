@@ -42,10 +42,11 @@ module BigCommerce
         return data unless data.is_a?(Hash)
 
         if data["errors"] && data["errors"].any?
-          message = data["title"].chomp(".")
-          message << ": " << data["errors"].map { |property, message| "#{property}: #{message}" }.join(", ")
+          errors = data["errors"].map { |property, message| "#{property}: #{message.chomp(".")}" }
+          errors.join(", ")
         else
-          message = sprintf("%s (%s)", data["title"], data["status"])
+          title = data["title"].chomp(".")
+          sprintf("%s (%s)", title, data["status"])
         end
       end
     end

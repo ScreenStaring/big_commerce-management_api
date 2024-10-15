@@ -9,11 +9,14 @@ module BigCommerce
     end
 
     class Client
-      attr_reader :customers, :inventories
+      attr_reader :customers,
+                  :inventories,
+                  :subscribers
 
       def initialize(*argz)
         @customers = ManagementAPI::Customers.new(*argz)
         @inventories = ManagementAPI::Inventories.new(*argz)
+        @subscribers = ManagementAPI::Subscribers.new(*argz)
       end
     end
   end
