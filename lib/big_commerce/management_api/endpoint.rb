@@ -54,7 +54,7 @@ module BigCommerce
       HOST = "api.bigcommerce.com"
       PORT = 443
 
-      USER_AGENT = "BigCommerce Management API Client v#{VERSION} (Ruby v#{RUBY_VERSION})"
+      USER_AGENT = "BigCommerce Management API Client v#{BigCommerce::ManagementAPI::VERSION} (Ruby v#{RUBY_VERSION})"
 
       CONTENT_TYPE = "Content-Type"
       CONTENT_TYPE_JSON = "application/json"
