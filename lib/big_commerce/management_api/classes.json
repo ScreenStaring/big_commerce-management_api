@@ -49,7 +49,9 @@
     "accepts_product_review_abandoned_cart_emails": true,
     "channel_ids": [],
     "shopper_profile_id": "82511e54-4040-40fe-b742-2b25655f205b",
-    "segment_ids": []
+    "segment_ids": [],
+    "date_created": "2024-10-08T01:22:36Z",
+    "date_modified": "2024-10-08T01:22:36Z"
   },
   "metafield": {
     "id": 0,
