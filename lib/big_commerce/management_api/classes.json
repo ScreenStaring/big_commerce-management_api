@@ -3,16 +3,16 @@
     "id": 1,
     "name": "Age",
     "type": "string",
-    "date_created": "2018-11-13T21:42:06Z",
-    "date_modified": "2018-11-14T16:46:23Z"
+    "date_modified": {"json_class":"Time","s":0,"n":0},
+    "date_created": {"json_class":"Time","s":0,"n":0}
   },
   "attribute_value": {
     "attribute_id": 0,
     "attribute_value": "string",
     "id": 0,
     "customer_id": 0,
-    "date_modified": "2019-08-24T14:15:22Z",
-    "date_created": "2019-08-24T14:15:22Z"
+    "date_modified": {"json_class":"Time","s":0,"n":0},
+    "date_created": {"json_class":"Time","s":0,"n":0}
   },
   "customer": {
     "id": 1,
@@ -53,8 +53,8 @@
     "channel_ids": [],
     "shopper_profile_id": "82511e54-4040-40fe-b742-2b25655f205b",
     "segment_ids": [],
-    "date_created": "2024-10-08T01:22:36Z",
-    "date_modified": "2024-10-08T01:22:36Z"
+    "date_modified": {"json_class":"Time","s":0,"n":0},
+    "date_created": {"json_class":"Time","s":0,"n":0}
   },
   "metafield": {
     "id": 0,
@@ -66,8 +66,8 @@
     "resource_type": "cart",
     "resource_id": 1,
     "description": "order",
-    "date_created": "2022-06-16T18:39:00+00:00",
-    "date_modified": "2022-06-16T18:39:00+00:00"
+    "date_modified": {"json_class":"Time","s":0,"n":0},
+    "date_created": {"json_class":"Time","s":0,"n":0}
   },
   "inventory": {
     "identity": {
@@ -101,8 +101,8 @@
     "order_id": 1,
     "channel_id": 1,
     "id": 0,
-    "date_modified": "2019-08-24T14:15:22Z",
-    "date_created": "2019-08-24T14:15:22Z",
+    "date_modified": {"json_class":"Time","s":0,"n":0},
+    "date_created": {"json_class":"Time","s":0,"n":0},
     "consents": []
   },
   "meta": {

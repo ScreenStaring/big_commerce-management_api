@@ -53,9 +53,9 @@ p attribute.id
 1. Add JSON response body to `lib/big_commerce/management/classes.json`
 1. Create or update `lib/big_commerce/management/THE_RESOURCE.rb`. See `customers.rb` for an example
 1. For new classes
-  - If the response JSON's top-level property is not `"data"` define `RESULT_KEY` with the name of the top-level property
-  - Define `PATH` for the resource's path **after** the `v3` portion of the URL
-  - Define `RESULT_INSTANCE` for the given class to use on response data pointed to by `RESULT_KEY`
+   - If the response JSON's top-level property is not `"data"` define `RESULT_KEY` with the name of the top-level property
+   - Define `RESULT_INSTANCE` and set it to the class to use on response data pointed to by `RESULT_KEY`
+   - Call the appropriate HTTP verb method passing the endpoint's path (the portion **after** the API's `v3` URL) and parameters
 1. If the method's return value should not be an `Array` call `unwrap(result)` before returning
 
 ## License
