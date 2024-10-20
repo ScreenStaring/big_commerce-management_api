@@ -10,6 +10,8 @@ module BigCommerce
         RESULT_INSTANCE = Address
 
         def create(*attributes)
+          attributes.flatten!
+
           POST(PATH, attributes.map(&:to_h))
         end
 
@@ -45,6 +47,8 @@ module BigCommerce
         end
 
         def create(*attributes)
+          attributes.flatten!
+
           POST(PATH, attributes.map(&:to_h))
         end
 
@@ -60,7 +64,7 @@ module BigCommerce
 
       class AttributeValues < Endpoint
         PATH = "customers/attribute-values"
-        RESULT_INSTANCE = AttributeValues
+        RESULT_INSTANCE = AttributeValue
 
         def get(options = {})
           GET(
@@ -74,6 +78,8 @@ module BigCommerce
         end
 
         def upsert(*attributes)
+          attributes.flatten!
+
           PUT(PATH, attributes.map(&:to_h))
         end
       end
@@ -87,19 +93,30 @@ module BigCommerce
         end
 
         def create(metafield)
-          if metafield.resource_id.nil?
-            raise ArgumentError, "Cannot create customer metafield: given metafield record has no resource id"
+          metafield = metafield.to_h
+          id = metafield.delete(:resource_id)
+
+          if id.nil?
+            raise ArgumentError, "Cannot create customer metafield: given metafield record has no resource_id"
           end
 
-          POST(path(metafield.resource_id), metafield.to_h)
+          POST(path(id), metafield)
         end
 
         def update(metafield)
-          if metafield.id.nil?
-            raise ArgumentError, "Cannot update customer metafield: given metafield record has no ID"
+          metafield = metafield.to_h
+
+          resource = metafield.delete(:resource_id)
+          if resource.nil?
+            raise ArgumentError, "Cannot update customer metafield: given metafield has no resource_id"
           end
 
-          result = PUT(path(metafield.resource_id, metafield.id), metafield.to_h)
+          id = metafield.delete(:id)
+          if id.nil?
+            raise ArgumentError, "Cannot update customer metafield: given metafield has no id"
+          end
+
+          result = PUT(path(resource_id, id), metafield)
           unwrap(result)
         end
 
@@ -146,6 +163,8 @@ module BigCommerce
       end
 
       def update(*customers)
+        customers.flatten!
+
         PUT(PATH, customers.map(&:to_h))
       end
     end
