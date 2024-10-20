@@ -93,6 +93,13 @@
       }
     ]
   },
+  "segment": {
+    "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+    "name": "My Segment",
+    "description": "Description",
+    "updated_at": {"json_class":"Time","s":0,"n":0},
+    "created_at": {"json_class":"Time","s":0,"n":0}
+  },
   "subscriber": {
     "email": "string",
     "first_name": "string",
