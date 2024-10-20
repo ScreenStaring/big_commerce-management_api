@@ -3,7 +3,7 @@
 v3 API client for [BigCommerce's REST Management API](https://developer.bigcommerce.com/docs/rest-management)
 
 **Incomplete! v3 has many endpoints and this only provides what we need at ScreenStaring** which currently
-is 99% `customers` stuff but adding new endpoints should be trivial. See [Adding New Endpoints](#adding-new-endpoints).
+is mostly customers and subscribers stuff but adding new endpoints should be trivial. See [Adding New Endpoints](#adding-new-endpoints).
 
 ## Installation
 
