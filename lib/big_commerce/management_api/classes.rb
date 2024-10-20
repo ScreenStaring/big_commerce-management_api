@@ -16,8 +16,17 @@ class2 "BigCommerce::ManagementAPI", JSON.parse(classes, :create_additions => tr
   def meta=(meta)
     @meta = meta
   end
+
+  def headers
+    @headers
+  end
+
+  def headers=(headers)
+    @headers = headers
+  end
 end
 
 require "big_commerce/management_api/customers"
 require "big_commerce/management_api/inventories"
+require "big_commerce/management_api/segments"
 require "big_commerce/management_api/subscribers"

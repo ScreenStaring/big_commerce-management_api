@@ -8,7 +8,15 @@ module BigCommerce
   module ManagementAPI
     Error = Class.new(StandardError)
 
-    module ResponseHeaders # :nodoc:
+    class ResponseHeaders
+      def initialize(headers)
+        @headers = headers || {}
+      end
+
+      def [](name)
+        @headers[name]
+      end
+
       def request_id
         headers["x-request-id"]
       end
@@ -21,15 +29,19 @@ module BigCommerce
         method = header.delete_prefix("x-")
         method.tr!("-", "_")
 
-        define_method(method) { headers[header] }
+        define_method(method) do
+          value = headers[header]
+          # Net::HTTP returns as an array
+          value.is_a?(Array) ? value[0] : value
+        end
       end
     end
 
     class ResponseError < Error
-      include ResponseHeaders
+      attr_reader :headers
 
       def initialize(data, headers)
-        @headers = headers
+        @headers = ResponseHeaders.new(headers)
         @data = data
 
         super error_message(data)
@@ -37,11 +49,22 @@ module BigCommerce
 
       private
 
-      attr_reader :headers
-
       def error_message(data)
-        return data unless data.is_a?(Hash)
+        #
+        # Looks for a structure like this and picks best message:
+        #
+        # {"data"=>[],
+        #  "errors"=>
+        #   [{"status"=>409,
+        #     "title"=>"Cannot have multiple segments with the same name",
+        #     "type"=>
+        #      "https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes",
+        #     "errors"=>{}}]
+        #
 
+        return data unless data.is_a?(Hash) && data["errors"]
+
+        data = data["errors"][0]
         if data["errors"] && data["errors"].any?
           errors = data["errors"].map { |property, message| "#{property}: #{message.chomp(".")}" }
           errors.join(", ")
@@ -52,7 +75,7 @@ module BigCommerce
       end
     end
 
-    class Endpoint # :nodoc:
+    class Endpoint
       HOST = "api.bigcommerce.com"
       PORT = 443
 
@@ -65,21 +88,7 @@ module BigCommerce
 
       RESULT_KEY = "data"
 
-      class Meta
-        include ResponseHeaders
-
-        attr_reader :pagination
-
-        def initialize(headers, pagination = nil)
-          @headers = headers
-          @pagination = pagination
-        end
-
-        private
-
-        attr_reader :headers
-      end
-
+      # May go in its own file
       class Response
         include Enumerable
 
@@ -98,11 +107,24 @@ module BigCommerce
                  }
                }
 
-        attr_reader :meta
+        class Meta
+          attr_reader :pagination, :total, :success, :failed
 
-        def initialize(result, headers, meta = nil)
-          @result = result
-          @meta = Meta.new(headers, meta ? Pagination.new(meta["pagination"]) : nil)
+          def initialize(meta)
+            @total = meta["total"]
+            @success = meta["success"]
+            @failed = meta["failed"]
+
+            @pagination = Pagination.new(meta["pagination"]) if meta["pagination"]
+          end
+        end
+
+        attr_reader :meta, :headers
+
+        def initialize(headers, result = nil, meta = nil)
+          @result = result || []
+          @headers = ResponseHeaders.new(headers)
+          @meta = Meta.new(meta) if meta
         end
 
         def each(&block)
@@ -150,10 +172,13 @@ module BigCommerce
         return unless record
 
         record.meta = result.meta
+        record.headers = result.headers
         record
       end
 
       def with_in_param(options, *param_names)
+        return unless options
+
         options = options.dup
         options.keys.each do |name|
           # Remove optional ":in" portion from "id:in" which may or may not be a Symbol
@@ -197,20 +222,6 @@ module BigCommerce
         raise Error, "failed to parse response JSON: #{e}"
       end
 
-      def big_commerce_headers(response)
-        headers = {}
-
-        response.to_hash.each do |name, value|
-          # Could include other x headers but the ResponseHeaders module will filter
-          next unless name.start_with?("x-")
-
-          # Net::HTTP returns them as an Array
-          headers[name] = value[0]
-        end
-
-        headers
-      end
-
       def request(req, data = {})
         req["X-Auth-Token"] = @auth_token
         req["User-Agent"] = USER_AGENT
@@ -235,15 +246,16 @@ module BigCommerce
       end
 
       def handle_response(res)
-        # TODO: data can be HTML string! Don't want this in the error!
+        # TODO: data can be HTML string! Don't want this in the error! Do we?
         data = res.body && JSON_CONTENT_TYPES.include?(res[CONTENT_TYPE]) ? parse_json(res.body) : res.body
         # pp data
-        headers = big_commerce_headers(res)
+        # Otherwise only available by name via #[]
+        headers = res.to_hash
 
         raise ResponseError.new(data, headers) if res.code[0] != "2"
 
         # 204, likely
-        return Response.new([], headers) unless data
+        return Response.new(headers) unless data
 
         result = data[self.class::RESULT_KEY]
         if result.is_a?(Array)
@@ -254,7 +266,7 @@ module BigCommerce
 
         # If response code is 2XX and data is a String we will have an error here
         # but it's TBD if this is ever the case
-        Response.new(result, headers, data["meta"])
+        Response.new(headers, result, data["meta"])
       end
     end
   end
