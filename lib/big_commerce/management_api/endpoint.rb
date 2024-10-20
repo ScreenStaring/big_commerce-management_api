@@ -202,9 +202,16 @@ module BigCommerce
 
       def query_string(params)
         params = params.dup
-
         params.keys.each do |name|
-          params[name] = params[name].join(",") if params[name].is_a?(Array)
+          value = params[name]
+
+          if value.is_a?(Array)
+            value = value.join(",")
+          elsif value.respond_to?(:strftime)
+            value = value.strftime("%Y-%m-%dT%H:%M:%S%z")
+          end
+
+          params[name] = value
         end
 
         # TODO: do they want form or URL encoding?
