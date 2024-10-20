@@ -27,25 +27,32 @@ Or install it yourself as:
 require "big_commerce/management_api"
 
 bc = BigCommerce::ManagementAPI.new(store_hash, auth_token)
-customers = bc.customers.get(:include => "addresses")
-customers = bc.customers.get(:include => "addresses", :id => [1,2,3])
+customers = bc.customers.get
+customers = bc.customers.get(:id => [1,2,3], :include => %w[addresses formfields])
 
-p customers.meta.request_id
 p customers.meta.pagination.total
+p customers.meta.headers.request_id
 
+# customers is Enumerable
 customers.each do |customer|
   p customer.first_name
   p customer.addresses[0].address_type
   # ...
 end
 
-attribute = BigCommerce::ManagementAPI::Attribute.new(
+begin
+  customers = bc.customers.get(:page => 1, :size => 99)
+rescue BigCommerce::ManagementAPI::ResponseError => e
+  p e.message
+  p e.headers.rate_limit_requests_left
+end
+
+attribute = bc.customers.attributes.create(
   :name => "Daily screen-staring count",
   :type => "number"
 )
-
-attribute = bc.customers.attributes.create(attribute)
 p attribute.id
+p attribute.meta.total # 1
 ```
 
 ## Adding New Endpoints
