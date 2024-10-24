@@ -28,6 +28,7 @@
       {
         "first_name": "string",
         "last_name": "string",
+        "company": "string",
         "address1": "Addr1",
         "address2": "",
         "city": "string",

@@ -30,7 +30,7 @@ module BigCommerce
         method.tr!("-", "_")
 
         define_method(method) do
-          value = headers[header]
+          value = @headers[header]
           # Net::HTTP returns as an array
           value.is_a?(Array) ? value[0] : value
         end
@@ -51,21 +51,31 @@ module BigCommerce
 
       def error_message(data)
         #
-        # Looks for a structure like this and picks best message:
+        # Looks for a structure like one of these  and picks best message:
         #
-        # {"data"=>[],
-        #  "errors"=>
+        # A:
+        #
+        # {"errors"=>
         #   [{"status"=>409,
         #     "title"=>"Cannot have multiple segments with the same name",
         #     "type"=>
         #      "https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes",
         #     "errors"=>{}}]
         #
+        #
+        # B:
+        #
+        # {"status"=>422,
+        #  "title"=>"Set customer attribute values failed.",
+        #  "type"=>
+        #   "https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes",
+        #  "errors"=>{"0.data"=>"missing attribute value"}}
+        #
+        return data unless data.is_a?(Hash)
 
-        return data unless data.is_a?(Hash) && data["errors"]
+        data = data["errors"][0] if data["errors"].is_a?(Array)
 
-        data = data["errors"][0]
-        if data["errors"] && data["errors"].any?
+        if data["errors"].any?
           errors = data["errors"].map { |property, message| "#{property}: #{message.chomp(".")}" }
           errors.join(", ")
         else
@@ -147,14 +157,14 @@ module BigCommerce
         path = endpoint(path)
         path << query_string(data) if data && data.any?
 
-        request(Net::HTTP::Delete.new(path))
+        request(Net::HTTP::Delete.new(path), data)
       end
 
       def GET(path, data = {})
         path = endpoint(path)
         path << query_string(data) if data && data.any?
 
-        request(Net::HTTP::Get.new(path))
+        request(Net::HTTP::Get.new(path), data)
       end
 
       def POST(path, data = {})
@@ -206,15 +216,12 @@ module BigCommerce
           value = params[name]
 
           if value.is_a?(Array)
-            value = value.join(",")
+            params[name] = value.join(",")
           elsif value.respond_to?(:strftime)
-            value = value.strftime("%Y-%m-%dT%H:%M:%S%z")
+            params[name] = value.strftime("%Y-%m-%dT%H:%M:%S%z")
           end
-
-          params[name] = value
         end
 
-        # TODO: do they want form or URL encoding?
         sprintf("?%s", URI.encode_www_form(params))
       end
 

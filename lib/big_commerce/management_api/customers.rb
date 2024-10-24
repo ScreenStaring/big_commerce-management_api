@@ -80,7 +80,7 @@ module BigCommerce
         def upsert(*attributes)
           attributes.flatten!
 
-          PUT(PATH, attributes.map(&:to_h))
+          PUT(PATH, attributes)
         end
       end
 
@@ -145,6 +145,21 @@ module BigCommerce
         @attributes = Attributes.new(*argz)
         @attribute_values = AttributeValues.new(*argz)
         @metafields = Metafields.new(*argz)
+      end
+
+      def create(*customers)
+        customers.flatten!
+
+        POST(PATH, customers.map(&:to_h))
+      end
+
+      def delete(*ids)
+        ids.flatten!
+
+        DELETE(
+          PATH,
+          with_in_param({:id => ids}, :id)
+        )
       end
 
       def get(options = {})

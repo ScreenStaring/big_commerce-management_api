@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/customers?id:in=999999
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1.pre1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Requests-Left:
+      - '3746'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '29449'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      X-Request-Id:
+      - 63468144a5d7155b8c274b4caf822063
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[],"meta":{"pagination":{"total":0,"count":0,"per_page":50,"current_page":1,"total_pages":0}}}'
+  recorded_at: Thu, 24 Oct 2024 07:15:42 GMT
+recorded_with: VCR 6.3.1

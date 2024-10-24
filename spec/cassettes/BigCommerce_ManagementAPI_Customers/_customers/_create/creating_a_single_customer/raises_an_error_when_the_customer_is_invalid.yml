@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/customers
+    body:
+      encoding: UTF-8
+      string: '[{"email":"not-an-email","first_name":"Jay","last_name":"Cat"}]'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1.pre1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 422
+      message: Unprocessable Entity
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Requests-Left:
+      - '3748'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '30000'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      X-Request-Id:
+      - 6359dbf153da3fd76ad1c69ef1ef0d37
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: ASCII-8BIT
+      string: '{"status":422,"title":"Create customers failed.","type":"https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes","errors":{"0.email":"invalid
+        email"}}'
+  recorded_at: Thu, 24 Oct 2024 07:13:33 GMT
+recorded_with: VCR 6.3.1

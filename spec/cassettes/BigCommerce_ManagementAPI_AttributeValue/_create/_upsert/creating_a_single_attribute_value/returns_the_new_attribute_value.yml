@@ -1,0 +1,218 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/customers/attributes
+    body:
+      encoding: UTF-8
+      string: '[{"name":"test.attribute_values.upsert","type":"string"}]'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1.pre1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Requests-Left:
+      - '3748'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '29999'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      X-Request-Id:
+      - a77668757fe1fafbd7b2a6a4f56cdc52
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[{"id":7,"name":"test.attribute_values.upsert","type":"string","date_created":"2024-10-24T04:32:20Z","date_modified":"2024-10-24T04:32:20Z"}],"meta":{}}'
+  recorded_at: Thu, 24 Oct 2024 04:32:19 GMT
+- request:
+    method: post
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/customers
+    body:
+      encoding: UTF-8
+      string: '[{"email":"test.attributevalues.create@example.com","first_name":"Test","last_name":"User"}]'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1.pre1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Requests-Left:
+      - '3747'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '29765'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      X-Request-Id:
+      - '095016d230b13b8892cc069d2ec0255c'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[{"id":13,"authentication":{"force_password_reset":false},"company":"","customer_group_id":0,"email":"test.attributevalues.create@example.com","first_name":"Test","last_name":"User","notes":"","phone":"","registration_ip_address":"","tax_exempt_category":"","date_created":"2024-10-24T04:32:20Z","date_modified":"2024-10-24T04:32:20Z","accepts_product_review_abandoned_cart_emails":false,"store_credit_amounts":[{"amount":0}],"origin_channel_id":1,"channel_ids":null}],"meta":{}}'
+  recorded_at: Thu, 24 Oct 2024 04:32:20 GMT
+- request:
+    method: put
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/customers/attribute-values
+    body:
+      encoding: UTF-8
+      string: '[{"attribute_id":7,"value":"some value","customer_id":13}]'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1.pre1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Requests-Left:
+      - '3746'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '29406'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      X-Request-Id:
+      - 434fb8d5f91cc5309d3259aa6ee6eeb3
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[{"id":2,"customer_id":13,"attribute_id":7,"attribute_value":"some
+        value","date_created":"2024-10-24T04:32:20Z","date_modified":"2024-10-24T04:32:20Z"}],"meta":{}}'
+  recorded_at: Thu, 24 Oct 2024 04:32:20 GMT
+- request:
+    method: delete
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/customers/attributes?id:in=7
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1.pre1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Connection:
+      - keep-alive
+      X-Rate-Limit-Requests-Left:
+      - '3745'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '29157'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      X-Request-Id:
+      - 2340a3ea99c495840af3e123af0ba961
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Thu, 24 Oct 2024 04:32:20 GMT
+- request:
+    method: delete
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/customers?id:in=13
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1.pre1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Connection:
+      - keep-alive
+      X-Rate-Limit-Requests-Left:
+      - '3744'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '28819'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      X-Request-Id:
+      - '097705c6c96088113e48db79156a64d0'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Thu, 24 Oct 2024 04:32:21 GMT
+recorded_with: VCR 6.3.1

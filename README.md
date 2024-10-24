@@ -65,6 +65,18 @@ p attribute.meta.total # 1
    - Call the appropriate HTTP verb method passing the endpoint's path (the portion **after** the API's `v3` URL) and parameters
 1. If the method's return value should not be an `Array` call `unwrap(result)` before returning
 
+## Testing
+
+Tests use [VCR](https://github.com/vcr/vcr). If you need to re-record cassettes or create new ones a BigCommerce
+account is with API access is required. See `.env.test.example`.
+
+To re-record certain tests you must import fixture data into your store. See `etc/customers.csv`. These records can be deleted once
+the VCR cassettes are recorded and you are done with development. The IDs they create are assumed by the tests which may present
+a problem. Open an issue if so.
+
+Any records that are created by the tests are deleted. Well, a delete is attempted in an `after` block, if something goes wrong with the test
+the record(s) may remain in your store.
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

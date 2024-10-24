@@ -1,0 +1,87 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/customers/attributes
+    body:
+      encoding: UTF-8
+      string: '[{"name":"test.attribute.create","type":"string"}]'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1.pre1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Requests-Left:
+      - '3748'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '29999'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      X-Request-Id:
+      - adfe0ca9196b5b3a1eeef4b3a714b7f6
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[{"id":9,"name":"test.attribute.create","type":"string","date_created":"2024-10-24T07:19:18Z","date_modified":"2024-10-24T07:19:18Z"}],"meta":{}}'
+  recorded_at: Thu, 24 Oct 2024 07:19:17 GMT
+- request:
+    method: delete
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/customers?id:in=9
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1.pre1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Connection:
+      - keep-alive
+      X-Rate-Limit-Requests-Left:
+      - '3747'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '29663'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      X-Request-Id:
+      - 83945b56fae6f287da0e750111b29a51
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Thu, 24 Oct 2024 07:19:18 GMT
+recorded_with: VCR 6.3.1

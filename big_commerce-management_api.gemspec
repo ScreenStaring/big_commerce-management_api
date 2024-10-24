@@ -27,4 +27,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "class2", ">= 0.6.0"
   spec.add_development_dependency "vcr"
+  spec.add_development_dependency "webmock"
+  spec.add_development_dependency "dotenv"
 end
