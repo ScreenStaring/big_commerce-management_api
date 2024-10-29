@@ -18,7 +18,8 @@ module BigCommerce
       end
 
       def request_id
-        headers["x-request-id"]
+        value = @headers["x-request-id"]
+        value.is_a?(Array) ? value[0] : value
       end
 
       %w[x-rate-limit-requests-left

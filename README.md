@@ -31,7 +31,8 @@ customers = bc.customers.get
 customers = bc.customers.get(:id => [1,2,3], :include => %w[addresses formfields])
 
 p customers.meta.pagination.total
-p customers.meta.headers.request_id
+p customers.headers.request_id
+p customers.headers["some-header"]
 
 # customers is Enumerable
 customers.each do |customer|
