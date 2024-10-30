@@ -33,7 +33,7 @@ module BigCommerce
         define_method(method) do
           value = @headers[header]
           # Net::HTTP returns as an array
-          value.is_a?(Array) ? value[0] : value
+          (value.is_a?(Array) ? value[0] : value).to_i
         end
       end
     end
