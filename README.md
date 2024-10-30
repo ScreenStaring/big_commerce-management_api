@@ -1,5 +1,7 @@
 # BigCommerce::ManagementAPI
 
+![CI Status](https://github.com/ScreenStaring/big_commerce-management_api/actions/workflows/ci.yml/badge.svg)
+
 v3 API client for [BigCommerce's REST Management API](https://developer.bigcommerce.com/docs/rest-management)
 
 **Incomplete! v3 has many endpoints and this only provides what we need at ScreenStaring** which currently
