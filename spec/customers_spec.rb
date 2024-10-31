@@ -1,12 +1,12 @@
 RSpec.describe BigCommerce::ManagementAPI::Customers, :vcr do
+  before { @created = [] }
+
+  after do
+    client.customers.delete(*@created) if @created.any?
+  end
+
   describe "#customers" do
     describe "#create" do
-      before { @created = [] }
-
-      after do
-        client.customers.delete(*@created) if @created.any?
-      end
-
       describe "creating a single customer" do
         it "returns the new customer" do
           result = client.customers.create(
@@ -70,6 +70,41 @@ RSpec.describe BigCommerce::ManagementAPI::Customers, :vcr do
                                   :last_name => "John",
                                   :email => "user2@example.com"
                                 )
+      end
+
+      describe ":date_created:min" do
+        it "returns customers created after the given date" do
+          # This is the time the VCR cassette was recorded
+          # If test is re-recorded switch use Time.now first. Other ways to do this?
+          # Can't freeze time on API server!
+
+          # after = Time.now
+          after = Time.parse("2024-10-30T22:30:38-0400")
+          result = client.customers.create(
+            {
+              :email => "test.customers.created.at.min1@example.com",
+              :first_name => "John",
+              :last_name => "Doe"
+            },
+            {
+              :email => "test.customers.created.at.min2@example.com",
+              :first_name => "Jane",
+              :last_name => "Doe"
+            }
+          )
+
+          @created.concat(result.map(&:id))
+
+          result = client.customers.get("date_created:min" => after)
+          expect(result.count).to eq 2
+
+          customers = result.sort_by(&:email)
+          expect(customers[0]).to be_a(BigCommerce::ManagementAPI::Customer)
+          expect(customers[0].email).to eq "test.customers.created.at.min1@example.com"
+
+          expect(customers[1]).to be_a(BigCommerce::ManagementAPI::Customer)
+          expect(customers[1].email).to eq "test.customers.created.at.min2@example.com"
+        end
       end
 
       describe ":id" do

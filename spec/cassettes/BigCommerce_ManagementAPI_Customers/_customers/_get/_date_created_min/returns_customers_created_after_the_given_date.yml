@@ -1,0 +1,131 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/customers
+    body:
+      encoding: UTF-8
+      string: '[{"email":"test.customers.created.at.min1@example.com","first_name":"John","last_name":"Doe"},{"email":"test.customers.created.at.min2@example.com","first_name":"Jane","last_name":"Doe"}]'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1.pre1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Requests-Left:
+      - '3748'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '30000'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      X-Request-Id:
+      - 5dec018217c57946a8315f5bd2afc4cc
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[{"id":21,"authentication":{"force_password_reset":false},"company":"","customer_group_id":0,"email":"test.customers.created.at.min1@example.com","first_name":"John","last_name":"Doe","notes":"","phone":"","registration_ip_address":"","tax_exempt_category":"","date_created":"2024-10-31T02:30:39Z","date_modified":"2024-10-31T02:30:39Z","accepts_product_review_abandoned_cart_emails":false,"store_credit_amounts":[{"amount":0}],"origin_channel_id":1,"channel_ids":null},{"id":22,"authentication":{"force_password_reset":false},"company":"","customer_group_id":0,"email":"test.customers.created.at.min2@example.com","first_name":"Jane","last_name":"Doe","notes":"","phone":"","registration_ip_address":"","tax_exempt_category":"","date_created":"2024-10-31T02:30:39Z","date_modified":"2024-10-31T02:30:39Z","accepts_product_review_abandoned_cart_emails":false,"store_credit_amounts":[{"amount":0}],"origin_channel_id":1,"channel_ids":null}],"meta":{}}'
+  recorded_at: Thu, 31 Oct 2024 02:30:40 GMT
+- request:
+    method: get
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/customers?date_created:min=2024-10-30T22:30:38-0400
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1.pre1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Requests-Left:
+      - '3747'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '28216'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      X-Request-Id:
+      - 3ae52b9b570c8750d08ac798255bb410
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[{"id":21,"authentication":{"force_password_reset":false},"company":"","customer_group_id":0,"email":"test.customers.created.at.min1@example.com","first_name":"John","last_name":"Doe","notes":"","phone":"","registration_ip_address":"","tax_exempt_category":"","date_created":"2024-10-31T02:30:39Z","date_modified":"2024-10-31T02:30:39Z","accepts_product_review_abandoned_cart_emails":false,"origin_channel_id":1,"channel_ids":null},{"id":22,"authentication":{"force_password_reset":false},"company":"","customer_group_id":0,"email":"test.customers.created.at.min2@example.com","first_name":"Jane","last_name":"Doe","notes":"","phone":"","registration_ip_address":"","tax_exempt_category":"","date_created":"2024-10-31T02:30:39Z","date_modified":"2024-10-31T02:30:39Z","accepts_product_review_abandoned_cart_emails":false,"origin_channel_id":1,"channel_ids":null}],"meta":{"pagination":{"total":2,"count":2,"per_page":50,"current_page":1,"total_pages":1}}}'
+  recorded_at: Thu, 31 Oct 2024 02:30:41 GMT
+- request:
+    method: delete
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/customers?id:in=21,22
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1.pre1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Connection:
+      - keep-alive
+      X-Rate-Limit-Requests-Left:
+      - '3746'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '26746'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      X-Request-Id:
+      - 2bcc5e154e5990b3abc2aaa100fd177f
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Thu, 31 Oct 2024 02:30:43 GMT
+recorded_with: VCR 6.3.1

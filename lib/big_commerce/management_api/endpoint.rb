@@ -203,7 +203,7 @@ module BigCommerce
 
           next unless values.any?
 
-          options[in_name] = values.join(",")
+          options[in_name] = values
         end
 
         options
@@ -212,18 +212,24 @@ module BigCommerce
       private
 
       def query_string(params)
-        params = params.dup
-        params.keys.each do |name|
-          value = params[name]
+        query = []
+
+        # We do this manually to join arrays and because time cannot be escaped as it will not be properly applied server-side
+        params.each do |name, value|
+          name = URI.encode_www_form_component(name)
 
           if value.is_a?(Array)
-            params[name] = value.join(",")
+            value = value.join(",")
           elsif value.respond_to?(:strftime)
-            params[name] = value.strftime("%Y-%m-%dT%H:%M:%S%z")
+            value = value.strftime("%Y-%m-%dT%H:%M:%S%z")
+          else
+            value = URI.encode_www_form_component(value)
           end
+
+          query << "#{name}=#{value}"
         end
 
-        sprintf("?%s", URI.encode_www_form(params))
+        sprintf("?%s", query.join("&"))
       end
 
       def endpoint(path)
