@@ -30,7 +30,7 @@ require "big_commerce/management_api"
 
 bc = BigCommerce::ManagementAPI.new(store_hash, auth_token)
 customers = bc.customers.get
-customers = bc.customers.get(:id => [1,2,3], :include => %w[addresses formfields], :page => 10, :limit => 25)
+customers = bc.customers.get(:id => [1,2,3], :include => %w[addresses formfields])
 
 p customers.meta.pagination.total
 p customers.headers.request_id
@@ -44,7 +44,7 @@ customers.each do |customer|
 end
 
 begin
-  customers = bc.customers.get(:page => 1, :size => 99)
+  customers = bc.customers.get(:page => 2, :limit => 99) # limit defaults to 250
 rescue BigCommerce::ManagementAPI::ResponseError => e
   p e.message
   p e.headers.rate_limit_requests_left
