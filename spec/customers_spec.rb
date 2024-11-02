@@ -250,6 +250,46 @@ RSpec.describe BigCommerce::ManagementAPI::Customers, :vcr do
         end
       end
 
+      # BigCommerce bug: when the number of records in the store is less than the default page size sort is not applied.
+      # Give this we limit the page size to get it to sort! :(
+      describe ":sort" do
+        describe "date_created:asc" do
+          it "returns customers sorted by the created date is ascending order" do
+            result = client.customers.get(:sort => "date_created:asc", :limit => 3)
+            expect(result.map(&:email)).to eq [
+                                             "user1@example.com",
+                                             "user2@example.com",
+                                             "user3@example.com"
+                                           ]
+          end
+        end
+
+        describe "date_created:desc" do
+          it "returns customers sorted by the created date is descending order" do
+            result = client.customers.get(:sort => "date_created:desc", :limit => 3)
+            expect(result.map(&:email)).to eq [
+                                             "user5@example.com",
+                                             "user4@example.com",
+                                             "user3@example.com"
+                                           ]
+          end
+        end
+
+        describe "last_name:asc" do
+          it "returns customers sorted by their last name is ascending order" do
+            result = client.customers.get(:sort => "last_name:asc", :limit => 3)
+            expect(result.map(&:last_name)).to eq ["Costa", "Doe", "John"]
+          end
+        end
+
+        describe "last_name:desc" do
+          it "returns customers sorted by their last name is descending order" do
+            result = client.customers.get(:sort => "last_name:desc", :limit => 3)
+            expect(result.map(&:last_name)).to eq ["Smith", "Oliver", "John"]
+          end
+        end
+      end
+
       describe "pagination" do
         before { @result = client.customers.get(:page => 2, :limit => 2) }
 

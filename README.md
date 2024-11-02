@@ -30,7 +30,7 @@ require "big_commerce/management_api"
 
 bc = BigCommerce::ManagementAPI.new(store_hash, auth_token)
 customers = bc.customers.get
-customers = bc.customers.get(:id => [1,2,3], :include => %w[addresses formfields])
+customers = bc.customers.get(:id => [1,2,3], :include => %w[addresses formfields], :page => 10, :limit => 25)
 
 p customers.meta.pagination.total
 p customers.headers.request_id

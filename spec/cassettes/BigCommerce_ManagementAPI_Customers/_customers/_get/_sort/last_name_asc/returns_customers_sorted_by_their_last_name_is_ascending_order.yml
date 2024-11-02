@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/customers?limit=3&sort=last_name:asc
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1.pre1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Requests-Left:
+      - '3748'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '29999'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      X-Request-Id:
+      - a13e441d33c3e9dae3d70cb920795e89
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[{"id":4,"authentication":{"force_password_reset":false},"company":"","customer_group_id":0,"email":"user4@example.com","first_name":"Paulo","last_name":"Costa","notes":"","phone":"","registration_ip_address":"","tax_exempt_category":"","date_created":"2024-10-21T06:11:28Z","date_modified":"2024-10-21T06:11:28Z","accepts_product_review_abandoned_cart_emails":false,"origin_channel_id":1,"channel_ids":null},{"id":1,"authentication":{"force_password_reset":false},"company":"Acme
+        Inc.","customer_group_id":0,"email":"user1@example.com","first_name":"John","last_name":"Doe","notes":"Note
+        1","phone":"555-555-1212","registration_ip_address":"","tax_exempt_category":"","date_created":"2024-10-21T06:11:27Z","date_modified":"2024-10-21T18:16:29Z","accepts_product_review_abandoned_cart_emails":false,"origin_channel_id":1,"channel_ids":null},{"id":2,"authentication":{"force_password_reset":false},"company":"Acme
+        Inc.","customer_group_id":0,"email":"user2@example.com","first_name":"Bob","last_name":"John","notes":"","phone":"212-555-1212","registration_ip_address":"","tax_exempt_category":"","date_created":"2024-10-21T06:11:27Z","date_modified":"2024-10-21T06:11:27Z","accepts_product_review_abandoned_cart_emails":false,"origin_channel_id":1,"channel_ids":null}],"meta":{"pagination":{"total":5,"count":3,"per_page":3,"current_page":1,"total_pages":2}}}'
+  recorded_at: Sat, 02 Nov 2024 16:49:56 GMT
+recorded_with: VCR 6.3.1
