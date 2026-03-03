@@ -2,10 +2,11 @@
 
 ![CI Status](https://github.com/ScreenStaring/big_commerce-management_api/actions/workflows/ci.yml/badge.svg)
 
-v3 API client for [BigCommerce's REST Management API](https://developer.bigcommerce.com/docs/rest-management)
+v3 API client for [BigCommerce's REST Management](https://developer.bigcommerce.com/docs/rest-management)
+and [Catalog](https://developer.bigcommerce.com/docs/rest-catalog/products) APIs
 
-**Incomplete! v3 has many endpoints and this only provides what we need at ScreenStaring** which currently
-is mostly customers and subscribers stuff but adding new endpoints should be trivial. See [Adding New Endpoints](#adding-new-endpoints).
+**Incomplete! v3 has many endpoints and this only provides what we need at ScreenStaring**
+Adding new endpoints should be trivial. See [Adding New Endpoints](#adding-new-endpoints).
 
 ## Installation
 
