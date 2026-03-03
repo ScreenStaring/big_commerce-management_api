@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/catalog/products/111?include_fields=price
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Request-Id:
+      - 8b39dacb6b3c6f7e8ec4a939a491bc9a
+      X-Rate-Limit-Requests-Left:
+      - '3748'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '29999'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"id":111,"price":26},"meta":{}}'
+  recorded_at: Tue, 03 Mar 2026 20:21:47 GMT
+recorded_with: VCR 6.3.1

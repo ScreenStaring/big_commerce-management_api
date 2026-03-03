@@ -28,5 +28,6 @@ end
 
 require "big_commerce/management_api/customers"
 require "big_commerce/management_api/inventories"
+require "big_commerce/management_api/products"
 require "big_commerce/management_api/segments"
 require "big_commerce/management_api/subscribers"

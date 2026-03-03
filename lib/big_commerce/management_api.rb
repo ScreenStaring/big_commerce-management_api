@@ -11,12 +11,14 @@ module BigCommerce
     class Client
       attr_reader :customers,
                   :inventories,
+                  :products,
                   :segments,
                   :subscribers
 
       def initialize(*argz)
         @customers = ManagementAPI::Customers.new(*argz)
         @inventories = ManagementAPI::Inventories.new(*argz)
+        @products = ManagementAPI::Products.new(*argz)
         @segments = ManagementAPI::Segments.new(*argz)
         @subscribers = ManagementAPI::Subscribers.new(*argz)
       end

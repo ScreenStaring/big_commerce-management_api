@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.bigcommerce.com/stores/<STORE_HASH>/v3/catalog/products/111
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - BigCommerce Management API Client v0.0.1 (Ruby v2.7.8)
+      X-Auth-Token:
+      - "<X-Auth-Token>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Request-Id:
+      - 7ce6f5ad14aadd3a4e14438a67d962fa
+      X-Rate-Limit-Requests-Left:
+      - '3748'
+      X-Rate-Limit-Time-Reset-Ms:
+      - '29999'
+      X-Rate-Limit-Requests-Quota:
+      - '3749'
+      X-Rate-Limit-Time-Window-Ms:
+      - '30000'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"id":111,"name":"!31 lanruoJ htimS ]elpmaS[!!","type":"physical","sku":"SM13","description":"<p>Volume
+        13 of Smith Journal is crammed with more than its fair share of sharp minds.
+        Top of the list would have to be Solomon Shereshevsky, who remembered every
+        single thing he&rsquo;d ever come across &ndash; a great skill to have when
+        it came to party tricks, but enough to send him crackers. And then there&rsquo;s
+        Delbert Trew who spends more time than you can imagine thinking about something
+        very sharp indeed: barbed wire. You can&rsquo;t go past Samuel Morse, either,
+        who was a famous portrait painter before he gave his name to the code he invented.
+        What a genius! And we&rsquo;re pretty taken with Noel Turner, who was smart
+        enough to get around some pretty weird New Zealand laws to invent a car that,
+        for a while, was a huge success. As well, you&rsquo;ll find stories on a cross-dressing
+        spy, a couple of Sydney nerds who revolutionised modern music, court illustration,
+        big wheels, the dubious science of controlling the weather and a whole stack
+        of other stuff.<\/p>\n<p>143 Pages<\/p>","weight":1,"width":0,"depth":0,"height":0,"price":26,"cost_price":0,"retail_price":0,"sale_price":0,"map_price":0,"tax_class_id":0,"product_tax_code":"","calculated_price":26,"categories":[23,20],"brand_id":0,"option_set_id":null,"option_set_display":"right","inventory_level":0,"inventory_warning_level":0,"inventory_tracking":"none","reviews_rating_sum":0,"reviews_count":0,"total_sold":0,"fixed_cost_shipping_price":0,"is_free_shipping":false,"is_visible":true,"is_featured":false,"related_products":[-1],"warranty":"","bin_picking_number":"","layout_file":"product.html","upc":"","mpn":"","gtin":"","date_last_imported":null,"search_keywords":"","availability":"available","availability_description":"","gift_wrapping_options_type":"any","gift_wrapping_options_list":[],"sort_order":0,"condition":"New","is_condition_shown":false,"order_quantity_minimum":0,"order_quantity_maximum":0,"page_title":"","meta_keywords":[],"meta_description":"","date_created":"2015-07-03T20:55:30+00:00","date_modified":"2026-03-03T20:19:50+00:00","view_count":63,"preorder_release_date":null,"preorder_message":"0","is_preorder_only":false,"is_price_hidden":false,"price_hidden_label":"0","custom_url":{"url":"\/smith-journal-13\/","is_customized":false},"base_variant_id":74,"open_graph_type":"product","open_graph_title":"","open_graph_description":"","open_graph_use_meta_description":true,"open_graph_use_product_name":true,"open_graph_use_image":true},"meta":{}}'
+  recorded_at: Tue, 03 Mar 2026 20:26:45 GMT
+recorded_with: VCR 6.3.1

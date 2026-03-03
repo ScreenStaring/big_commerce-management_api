@@ -113,6 +113,128 @@
     "date_created": {"json_class":"Time","s":0,"n":0},
     "consents": []
   },
+  "product": {
+    "id": 0,
+    "name": "string",
+    "type": "physical",
+    "sku": "",
+    "description": "string",
+    "weight": 0,
+    "width": 0,
+    "depth": 0,
+    "height": 0,
+    "price": 0.0,
+    "cost_price": 0.0,
+    "retail_price": 0.0,
+    "sale_price": 0.0,
+    "map_price": 0.0,
+    "tax_class_id": 0,
+    "product_tax_code": "",
+    "calculated_price": 0,
+    "categories": [],
+    "brand_id": 0,
+    "brand_name": "string",
+    "option_set_id": 0,
+    "option_set_display": "string",
+    "inventory_level": 0,
+    "inventory_warning_level": 0,
+    "inventory_tracking": "none",
+    "reviews_rating_sum": 0,
+    "reviews_count": 0,
+    "total_sold": 0,
+    "fixed_cost_shipping_price": 0,
+    "is_free_shipping": false,
+    "is_visible": true,
+    "is_featured": false,
+    "related_products": [],
+    "warranty": "",
+    "bin_picking_number": "",
+    "layout_file": "string",
+    "upc": "",
+    "mpn": "",
+    "gtin": "",
+    "search_keywords": "",
+    "availability": "available",
+    "availability_description": "",
+    "gift_wrapping_options_type": "any",
+    "gift_wrapping_options_list": [],
+    "sort_order": 0,
+    "condition": "New",
+    "is_condition_shown": false,
+    "order_quantity_minimum": 0,
+    "order_quantity_maximum": 0,
+    "page_title": "",
+    "meta_keywords": [],
+    "meta_description": "",
+    "date_created": {"json_class":"Time","s":0,"n":0},
+    "date_modified": {"json_class":"Time","s":0,"n":0},
+    "view_count": 0,
+    "preorder_release_date": {"json_class":"Time","s":0,"n":0},
+    "preorder_message": "",
+    "is_preorder_only": false,
+    "is_price_hidden": false,
+    "price_hidden_label": "",
+    "custom_url": {
+      "url": "string",
+      "is_customized": true
+    },
+    "base_variant_id": 0,
+    "open_graph_type": "product",
+    "open_graph_title": "",
+    "open_graph_description": "",
+    "open_graph_use_meta_description": true,
+    "open_graph_use_product_name": true,
+    "open_graph_use_image": true,
+    "date_last_imported": "string",
+    "custom_fields": [
+      {
+        "id": 0,
+        "name": "string",
+        "value": "string"
+      }
+    ],
+    "bulk_pricing_rules": [
+      {
+        "quantity_min": 0,
+        "quantity_max": 0,
+        "type": "string",
+        "amount": 0
+      }
+    ],
+    "images": [
+      {
+        "id": 0,
+        "product_id": 0,
+        "is_thumbnail": true,
+        "sort_order": 0,
+        "description": "string",
+        "image_url": "string",
+        "image_file": "string",
+        "date_modified": {"json_class":"Time","s":0,"n":0}
+      }
+    ],
+    "primary_image": {
+      "id": 0,
+      "product_id": 0,
+      "is_thumbnail": true,
+      "sort_order": 0,
+      "description": "string",
+      "image_file": "string",
+      "date_modified": {"json_class":"Time","s":0,"n":0}
+    },
+    "videos": [
+      {
+        "id": 0,
+        "product_id": 0,
+        "title": "string",
+        "description": "string",
+        "sort_order": 0,
+        "type": "string",
+        "video_id": "string",
+        "length": "string"
+      }
+    ]
+  },
   "meta": {
     "pagination": {
       "total": 246,
